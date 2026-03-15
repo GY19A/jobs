@@ -6,10 +6,6 @@ Analyzing how susceptible every occupation in the US economy is to AI and automa
 
 ![AI Exposure Treemap](jobs.png)
 
-## What's here
-
-The BLS OOH covers **342 occupations** spanning every sector of the US economy, with detailed data on job duties, work environment, education requirements, pay, and employment projections. We scraped all of it, scored each occupation's AI exposure using an LLM, and built an interactive treemap visualization.
-
 ## 🆕 New: Education Paradox Visualization
 
 **Location:** `jobs_education/`
@@ -47,6 +43,10 @@ We've added a new visualization that reveals **The AI Education Paradox** - a co
 | `patch_html.py` | Patch original HTML with paradox view |
 | `prepare_data.py` | Prepare data for visualization |
 | `site/` | Frontend files (index.html, style.css, app.js, data.json) |
+
+## What's here
+
+The BLS OOH covers **342 occupations** spanning every sector of the US economy, with detailed data on job duties, work environment, education requirements, pay, and employment projections. We scraped all of it, scored each occupation's AI exposure using an LLM, and built an interactive treemap visualization.
 
 ## Data pipeline
 
