@@ -10,6 +10,44 @@ Analyzing how susceptible every occupation in the US economy is to AI and automa
 
 The BLS OOH covers **342 occupations** spanning every sector of the US economy, with detailed data on job duties, work environment, education requirements, pay, and employment projections. We scraped all of it, scored each occupation's AI exposure using an LLM, and built an interactive treemap visualization.
 
+## 🆕 New: Education Paradox Visualization
+
+**Location:** `jobs_education/`
+
+We've added a new visualization that reveals **The AI Education Paradox** - a counterintuitive finding about AI's impact on jobs:
+
+### Key Insight
+
+> **Higher education = Higher AI exposure**
+
+| Education Level | Avg AI Exposure |
+|-----------------|-----------------|
+| No credential | 3.1 |
+| High school | 4.9 |
+| Bachelor's degree | **6.7** |
+| Master's degree | 5.7 |
+| Doctoral/Professional | 5.7 |
+
+**Why?** Jobs that can be done entirely from a home office on a computer are inherently more exposed to AI. Conversely, jobs requiring physical presence, manual skill, or real-time human interaction have a natural barrier.
+
+### Visualization Features
+
+- **Education tier columns** - Jobs grouped by education level (lowest to highest)
+- **AI exposure gradient** - Green (safe) to red (exposed) color scale
+- **Bubble sizing** - Proportional to number of jobs in each occupation
+- **Interactive tooltips** - Hover for detailed occupation info
+
+![Education Paradox Demo](education-paradox-demo.png)
+
+### Files in jobs_education/
+
+| File | Description |
+|------|-------------|
+| `analyze_education.py` | Education statistics analysis |
+| `patch_html.py` | Patch original HTML with paradox view |
+| `prepare_data.py` | Prepare data for visualization |
+| `site/` | Frontend files (index.html, style.css, app.js, data.json) |
+
 ## Data pipeline
 
 1. **Scrape** (`scrape.py`) — Playwright (non-headless, BLS blocks bots) downloads raw HTML for all 342 occupation pages into `html/`.
@@ -29,6 +67,7 @@ The BLS OOH covers **342 occupations** spanning every sector of the US economy, 
 | `html/` | Raw HTML pages from BLS (source of truth, ~40MB) |
 | `pages/` | Clean Markdown versions of each occupation page |
 | `site/` | Static website (treemap visualization) |
+| `jobs_education/` | New Education Paradox visualization |
 
 ## AI exposure scoring
 
@@ -89,4 +128,16 @@ uv run python build_site_data.py
 
 # Serve the site locally
 cd site && python -m http.server 8000
+```
+
+## Serving the Education Paradox View
+
+```bash
+# Navigate to the jobs_education site directory
+cd jobs_education/site
+
+# Start the HTTP server
+python3 -m http.server 19211 --bind 0.0.0.0
+
+# Access at http://localhost:19211/
 ```
